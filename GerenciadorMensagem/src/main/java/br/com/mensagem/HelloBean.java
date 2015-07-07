@@ -3,10 +3,10 @@ package br.com.mensagem;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class HelloBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
