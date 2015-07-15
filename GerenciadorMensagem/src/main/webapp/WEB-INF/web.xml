@@ -13,7 +13,7 @@
 
 	<!-- Página de boas vindas do projeto -->
 	<welcome-file-list>
-		<welcome-file>index.xhtml</welcome-file>
+		<welcome-file>home.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<!-- Mapeamento da Servlet do JSF -->
@@ -49,6 +49,12 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
+	
+	<!-- Configuração de tagLibs personalizadas --> 
+	<context-param>
+	   <param-name>facelets.LIBRARIES</param-name>
+	   <param-value>/WEB-INF/mensagem.taglib.xml</param-value>
+	</context-param>
 
 	<!-- <error-page>
 		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
