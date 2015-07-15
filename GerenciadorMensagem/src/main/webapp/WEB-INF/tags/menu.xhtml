@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:composite="http://java.sun.com/jsf/composite"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:ui="http://java.sun.com/jsf/facelets">
+   
+   <composite:interface>
+	<composite:attribute name="nomeMenu" required="true"/>   	
+   </composite:interface>
+   
+   
+
+   <composite:implementation>
+		<div class="navbar navbar-default">	
+			<div class="container-fluid">		
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#meuMenu">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				
+					<a class="navbar-brand" href="#" >Sistema Saúde</a>
+				</div>
+				<div class="collapse navbar-collapse" id="meuMenu">
+					<ul class="nav navbar-nav">
+						<ui:repeat var="menuVO" value="#{sistemaMB.menusVO}" varStatus="status">
+							<li> 
+								<h:link value="#{cc.attrs.nomeMenu}" outcome="#{menuVO.url}"/>
+							</li>
+						</ui:repeat>
+					</ul>
+					
+					<div class="navbar-form navbar-right">
+		            	<div class="form-group">
+	     	                <button type= "submit" class="btn btn-info">Cadastrar</button>
+						</div>
+			            <div class="form-group">
+			            	<button type= "submit" class="btn btn-success">Logar</button>
+			            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</composite:implementation>
+
+</html>

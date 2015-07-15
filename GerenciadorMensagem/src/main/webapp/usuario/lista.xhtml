@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   template="/WEB-INF/templates/default.xhtml">
+   <ui:define name="principal">
+
+   <f:metadata>
+   		<f:event listener="#{usuarioMB.configurar()}" type="preRenderView"></f:event>
+   </f:metadata>
+
+	<h:form>
+
+	   <table class="table table-sriped">
+	  	<thead>
+	  		<tr>
+	  			<td>Id</td>
+	  			<td>Nome</td>
+	  			<td>CPF</td>
+	  			<td>Opções</td>
+	  		</tr>
+	  	</thead>
+	  	<tbody>
+			<ui:repeat var="usuario" value="#{usuarioMB.usuarios}">
+				<tr>
+					<td>#{usuario.id}</td>
+					<td>#{usuario.nome}</td>
+					<td>#{usuario.cpf}</td>
+					<td>
+						<h:commandLink value="Excluir" action="#{usuarioMB.excluir(usuario.id)}"/>
+						<h:commandLink value="Alterar" action="#{usuarioMB.alterar(usuario.id)}"/>
+					</td>
+				</tr>
+			</ui:repeat>  	
+	  	</tbody>
+	   </table>
+	
+	   <h:commandButton styleClass="btn btn-success" action="cadastrar" value="Cadastrar" />
+
+	</h:form>	
+	
+   </ui:define>
+</ui:composition>
