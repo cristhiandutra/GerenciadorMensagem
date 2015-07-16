@@ -10,11 +10,8 @@ import br.com.mensagem.entidades.Pessoa;
 public interface UsuarioLocal {
 	
 	List<Pessoa> listar();
-
 	void salvar(Pessoa usuario);
-
 	void excluir(Long idUsuario);
-
 	Pessoa buscar(Long idUsuario);
 
 }

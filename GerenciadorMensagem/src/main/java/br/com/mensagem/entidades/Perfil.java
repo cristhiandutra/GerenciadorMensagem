@@ -29,6 +29,17 @@ public class Perfil implements Serializable {
 	private String nome;
 	
 	private String descricao;
+	
+	public Perfil() {
+		super();
+	}
+	
+	public Perfil(Long id, String nome, String descricao) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+	}
 
 	//--------- get's e set's
 	
@@ -56,5 +67,4 @@ public class Perfil implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
 }

@@ -28,9 +28,13 @@ public class UsuarioBean implements UsuarioLocal {
 
 	@Override
 	public void salvar(Pessoa usuario) {
-		Long contadorId = usuarios.size() + 1l;
-		usuario.setId(contadorId);
-		usuarios.put(contadorId, usuario);
+		if (null != usuario.getId()) {
+			usuarios.put(usuario.getId(), usuario);
+		} else {
+			Long contadorId = usuarios.size() + 1l;
+			usuario.setId(contadorId);
+			usuarios.put(contadorId, usuario);
+		}
 	}
 
 	@Override

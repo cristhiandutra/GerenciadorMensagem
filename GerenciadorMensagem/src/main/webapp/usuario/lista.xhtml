@@ -7,7 +7,7 @@
    <ui:define name="principal">
 
    <f:metadata>
-   		<f:event listener="#{usuarioMB.configurar()}" type="preRenderView"></f:event>
+   		<f:event listener="#{usuarioMB.configurarLista()}" type="preRenderView"></f:event>
    </f:metadata>
 
 	<h:form>
@@ -29,7 +29,9 @@
 					<td>#{usuario.cpf}</td>
 					<td>
 						<h:commandLink value="Excluir" action="#{usuarioMB.excluir(usuario.id)}"/>
-						<h:commandLink value="Alterar" action="#{usuarioMB.alterar(usuario.id)}"/>
+						<h:commandLink value="Alterar" action="formulario">
+							<f:param value="#{usuario.id}" name="idUsuario"/>
+						</h:commandLink>
 					</td>
 				</tr>
 			</ui:repeat>  	
