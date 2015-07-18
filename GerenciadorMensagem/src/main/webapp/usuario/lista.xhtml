@@ -9,34 +9,47 @@
    <f:metadata>
    		<f:event listener="#{usuarioMB.configurarLista()}" type="preRenderView"></f:event>
    </f:metadata>
+   
 
 	<h:form>
 
-	   <table class="table table-sriped">
-	  	<thead>
-	  		<tr>
-	  			<td>Id</td>
-	  			<td>Nome</td>
-	  			<td>CPF</td>
-	  			<td>Opções</td>
-	  		</tr>
-	  	</thead>
-	  	<tbody>
-			<ui:repeat var="usuario" value="#{usuarioMB.usuarios}">
-				<tr>
-					<td>#{usuario.id}</td>
-					<td>#{usuario.nome}</td>
-					<td>#{usuario.cpf}</td>
-					<td>
-						<h:commandLink value="Excluir" action="#{usuarioMB.excluir(usuario.id)}"/>
-						<h:commandLink value="Alterar" action="formulario">
-							<f:param value="#{usuario.id}" name="idUsuario"/>
-						</h:commandLink>
-					</td>
-				</tr>
-			</ui:repeat>  	
-	  	</tbody>
-	   </table>
+	   <div class="page-header">
+		   	<h1 class="text-center">Usuários</h1>  	   
+	   </div>   
+	   
+	 	   
+  	   
+		   <table class="table table-striped">
+		  	<thead>
+		  		<tr>
+		  			<td ><h4>Id</h4></td>
+		  			<td ><h4>Nome</h4></td>
+		  			<td ><h4>Perfil</h4></td>
+		  			<td ><h4 class="text-center">Opções</h4></td>
+		  		</tr>
+		  	</thead>
+		  	<tbody>
+				<ui:repeat var="usuario" value="#{usuarioMB.usuarios}">
+					<tr>
+						<td>#{usuario.id}</td>
+						<td>#{usuario.nome}</td>
+						<td>#{usuario.perfil.nome}</td>						
+						<td align="center">					
+							<h:commandLink styleClass="btn btn-info btn-sm" action="#{usuarioMB.excluir(usuario.id)}">
+								<span class="glyphicon glyphicon-remove"></span>
+							</h:commandLink>							
+							<span></span>							
+							<h:commandLink styleClass="btn btn-info btn-sm" action="formulario">
+								<f:param value="#{usuario.id}" name="idUsuario"/>
+								<span class="glyphicon glyphicon-pencil"></span>
+							</h:commandLink>	
+						</td>
+					</tr>
+				</ui:repeat>  	
+		  	</tbody>
+		   </table>
+	   
+	   
 	
 	   <h:commandButton styleClass="btn btn-success" action="cadastrar" value="Cadastrar" />
 

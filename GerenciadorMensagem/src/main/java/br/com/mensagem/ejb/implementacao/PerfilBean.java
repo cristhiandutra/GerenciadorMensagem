@@ -1,27 +1,51 @@
 package br.com.mensagem.ejb.implementacao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
+import br.com.faeterj.servicomensagensejb.dao.interfaces.PerfilDAO;
+import br.com.faeterj.servicomensagensejb.daofabrica.excecoes.ExcecaoGenerica;
+import br.com.faeterj.servicomensagensejb.daofabrica.fabrica.DAOFabricaImpl;
+import br.com.faeterj.servicomensagensejb.entidades.Perfil;
 import br.com.mensagem.ejb.interfaces.PerfilLocal;
-import br.com.mensagem.entidades.Perfil;
 
 @Stateless
 public class PerfilBean implements PerfilLocal {
+	
+	@PersistenceContext
+	private EntityManager entityManager;
+	
+	public PerfilDAO getPerfilDAO() throws ExcecaoGenerica {
+		return (PerfilDAO) new DAOFabricaImpl(entityManager).getDAO(Perfil.class);
+	}
 
 	@Override
 	public List<Perfil> listar() {
-		List<Perfil> perfilList = new ArrayList<Perfil>();
+		List<Perfil> lista = null;
 		
-		Perfil a = new Perfil(1l, "Administrador", "Perfil de administrador do sistema.");
-		Perfil b = new Perfil(2l, "Funcionário", "Perfil que pode enviar mensagems no sistema.");
+		try {
+			lista = getPerfilDAO().listar();
+		} catch (ExcecaoGenerica e) {
+			e.printStackTrace();
+		}
 		
-		perfilList.add(a);
-		perfilList.add(b);
+		return lista;
+	}
 
-		return perfilList;
+	@Override
+	public Perfil buscarPorId(Long id) {
+		Perfil perfil = null;
+		
+		try {
+			perfil = getPerfilDAO().buscarPorId(id);
+		} catch (ExcecaoGenerica e) {
+			e.printStackTrace();
+		}
+		
+		return perfil;
 	}
 
 

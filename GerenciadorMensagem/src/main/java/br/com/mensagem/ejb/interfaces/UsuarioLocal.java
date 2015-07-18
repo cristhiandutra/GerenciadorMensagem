@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import br.com.mensagem.entidades.Pessoa;
+import br.com.faeterj.servicomensagensejb.entidades.Pessoa;
 
 @Local
 public interface UsuarioLocal {
@@ -13,5 +13,4 @@ public interface UsuarioLocal {
 	void salvar(Pessoa usuario);
 	void excluir(Long idUsuario);
 	Pessoa buscar(Long idUsuario);
-
 }

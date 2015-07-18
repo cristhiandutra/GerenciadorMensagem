@@ -1,50 +1,74 @@
 package br.com.mensagem.ejb.implementacao;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
+import br.com.faeterj.servicomensagensejb.dao.interfaces.PessoaDAO;
+import br.com.faeterj.servicomensagensejb.daofabrica.excecoes.ExcecaoGenerica;
+import br.com.faeterj.servicomensagensejb.daofabrica.fabrica.DAOFabricaImpl;
+import br.com.faeterj.servicomensagensejb.entidades.Pessoa;
 import br.com.mensagem.ejb.interfaces.UsuarioLocal;
-import br.com.mensagem.entidades.Pessoa;
 
 @Stateless
 public class UsuarioBean implements UsuarioLocal {
+	
+	@PersistenceContext
+	private EntityManager entityManager;
 
-	private Map<Long, Pessoa> usuarios = new HashMap<Long, Pessoa>();
+	public PessoaDAO getPessoaDAO() throws ExcecaoGenerica {
+		return (PessoaDAO) new DAOFabricaImpl(entityManager).getDAO(Pessoa.class);
+	}
 
 	@Override
 	public List<Pessoa> listar() {
-		List<Pessoa> usuariosList = new ArrayList<Pessoa>();
+		List<Pessoa> lista = null;
 		
-		for (Map.Entry<Long, Pessoa> entry : usuarios.entrySet()) {
-			usuariosList.add(entry.getValue());
+		try {
+			lista = getPessoaDAO().listarAscOuDesc("id", true);
+		} catch (ExcecaoGenerica e) {
+			e.printStackTrace();
 		}
 
-		return usuariosList;
+		return lista;
 	}
 
 	@Override
 	public void salvar(Pessoa usuario) {
-		if (null != usuario.getId()) {
-			usuarios.put(usuario.getId(), usuario);
-		} else {
-			Long contadorId = usuarios.size() + 1l;
-			usuario.setId(contadorId);
-			usuarios.put(contadorId, usuario);
+		try {
+			if (null != usuario.getId()) {
+				getPessoaDAO().alterar(usuario);
+			} else {
+				getPessoaDAO().salvar(usuario);
+			}
+			
+		} catch (ExcecaoGenerica e) {
+			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void excluir(Long idUsuario) {
-		usuarios.remove(idUsuario);
+		try {
+			getPessoaDAO().excluir(idUsuario);
+		} catch (ExcecaoGenerica e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public Pessoa buscar(Long idUsuario) {
-		return usuarios.get(idUsuario);
+		Pessoa pessoa = null;
+		
+		try {
+			pessoa = getPessoaDAO().buscarPorId(idUsuario);
+		} catch (ExcecaoGenerica e) {
+			e.printStackTrace();
+		}
+		
+		return pessoa;
 	}
 
 }
