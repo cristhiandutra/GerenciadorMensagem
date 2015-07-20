@@ -16,38 +16,47 @@
 		<f:metadata>
 			<f:event listener="#{usuarioMB.configurarFormulario()}"
 				type="preRenderView"></f:event>
-		</f:metadata>
+		</f:metadata>		
 
 		<h:form id="formularioUsuario" class="form-horizontal" role="form"
 			prependId="false">
 			
-			<h:messages styleClass="alert alert-danger"/>
+			<ol class="breadcrumb">
+		   		<li>Usuário</li>
+		   		<li>Cadastro</li>	   	
+		    </ol>
+			
+			<h:messages id="messages"
+				errorClass="alert alert-danger" 
+				infoClass="alert alert-info" 
+				warnClass="alert alert-warning"
+				/>
 
-			<div class="form-group has-error">
-				<label class="control-label col-sm-4" for="nome">Nome:</label>
-				<div class="col-sm-8">
+			<div class="form-group">
+				<label class="control-label col-sm-3" for="nome">Nome:</label>
+				<div class="col-sm-9">
 					<h:inputText id="nome" styleClass="form-control"
 						value="#{usuarioMB.usuario.nome}" maxlength="45" 
-						required="true" />
+						/>					
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-4" for="sobrenome">Sobrenome:</label>
-				<div class="col-sm-8">
+				<label class="control-label col-sm-3" for="sobrenome">Sobrenome:</label>
+				<div class="col-sm-9">
 					<h:inputText id="sobrenome" styleClass="form-control"
 						value="#{usuarioMB.usuario.sobrenome}" maxlength="45" 
-						required="true"/>
+						/>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-4" for="dataNascimento">Data
+				<label class="control-label col-sm-3" for="dataNascimento">Data
 					Nascimento:</label>
-				<div class="col-sm-8">
+				<div class="col-sm-9">
 					<h:inputText id="dataNascimento" styleClass="form-control"
 						value="#{usuarioMB.usuario.dataNascimento}"
-						required="true">
+						>
 						<f:converter converterId="br.com.mensagem.DataConverter" />
 					</h:inputText>
 
@@ -55,11 +64,11 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-4" for="cpf">Cpf:</label>
-				<div class="col-sm-8">
+				<label class="control-label col-sm-3" for="cpf">Cpf:</label>
+				<div class="col-sm-9">
 					<h:inputText id="cpf" styleClass="form-control"
 						value="#{usuarioMB.usuario.cpf}" maxlength="11" 
-						required="true"
+						
 						validatorMessage="Insira um CPF válido.">
 						<f:converter converterId="br.com.mensagem.CPFConverter" />
 					</h:inputText>
@@ -68,38 +77,38 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-4" for="login">Login:</label>
-				<div class="col-sm-8">
+				<label class="control-label col-sm-3" for="login">Login:</label>
+				<div class="col-sm-9">
 					<h:inputText id="login" styleClass="form-control"
 						value="#{usuarioMB.usuario.login}" maxlength="45" 
-						required="true"/>
+						/>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-4" for="senha">Senha:</label>
-				<div class="col-sm-8">
+				<label class="control-label col-sm-3" for="senha">Senha:</label>
+				<div class="col-sm-9">
 					<h:inputSecret id="senha" styleClass="form-control"
 						value="#{usuarioMB.usuario.senha}" maxlength="45" 
-						required="true"/>
+						/>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-4" for="email">Email:</label>
-				<div class="col-sm-8">
+				<label class="control-label col-sm-3" for="email">Email:</label>
+				<div class="col-sm-9">
 					<h:inputText id="email" styleClass="form-control"
 						value="#{usuarioMB.usuario.email}" maxlength="45" 
-						required="true"/>
+						/>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-4">Perfil:</label>
-				<div class="col-sm-8">
+				<label class="control-label col-sm-3">Perfil:</label>
+				<div class="col-sm-9">
 					<h:selectOneMenu styleClass="form-control"
 						value="#{usuarioMB.idPerfil}"
-						required="true">
+						>
 						<f:selectItem itemLabel="Selecione" itemValue="" />
 						<f:selectItems value="#{usuarioMB.perfis}" var="perfil"
 							itemValue="#{perfil.id}" itemLabel="#{perfil.nome}" />
@@ -108,7 +117,7 @@
 			</div>
 
 			<div class="form-group">
-				<div class="col-sm-offset-4 col-sm-8">
+				<div class="col-sm-offset-4 col-sm-9">
 					<div class="checkbox">
 						<label> <h:selectBooleanCheckbox id="indAtivo"
 								value="#{usuarioMB.usuario.indAtivo}">

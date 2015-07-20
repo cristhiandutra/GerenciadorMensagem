@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
@@ -58,17 +59,56 @@ public class UsuarioMB extends GenericoMB implements Serializable {
 	}
 
 	public String salvar() {
+		if (validar()) {
+			return "";
+		}
+		
 		Perfil perfil = perfilBean.buscarPorId(idPerfil);
 		usuario.setPerfil(perfil);
 		usuarioBean.salvar(usuario);
 		
 		return "lista?faces-redirect=true";
 	}
-	
-	public String excluir(Long idUsuario) {
-		usuarioBean.excluir(idUsuario);
+
+	private Boolean validar() {
+		Boolean validacao = false;		
 		
-		return "lista?faces-redirect=true";
+		if (null == usuario.getNome() || "".equals(usuario.getNome())) {
+			FacesContext.getCurrentInstance().addMessage("formularioUsuario", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Campo "+"Nome"+" obrigatório.", null));
+			validacao = true;
+		}
+		
+		if (null == usuario.getDataNascimento()) {
+			FacesContext.getCurrentInstance().addMessage("formularioUsuario", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Campo "+"Data Nascimento"+" obrigatório.", null));
+			validacao = true;
+		}
+		
+		if (null == usuario.getCpf() || usuario.getCpf() == 0) {
+			FacesContext.getCurrentInstance().addMessage("formularioUsuario", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Campo "+"CPF"+" obrigatório.", null));
+			validacao = true;
+		}
+		
+		if (null == usuario.getLogin() || "".equals(usuario.getLogin())) {
+			FacesContext.getCurrentInstance().addMessage("formularioUsuario", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Campo "+"Login"+" obrigatório.", null));
+			validacao = true;
+		}
+		
+		if (null == usuario.getSenha() || "".equals(usuario.getSenha())) {
+			FacesContext.getCurrentInstance().addMessage("formularioUsuario", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Campo "+"Senha"+" obrigatório.", null));
+			validacao = true;
+		}
+		
+		if (null == usuario.getEmail() || "".equals(usuario.getEmail())) {
+			FacesContext.getCurrentInstance().addMessage("formularioUsuario", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Campo "+"Email"+" obrigatório.", null));
+			validacao = true;
+		}
+
+		if (null == idPerfil || idPerfil == 0) {
+			FacesContext.getCurrentInstance().addMessage("formularioUsuario", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Campo "+"Perfil"+" obrigatório.", null));
+			validacao = true;
+		}
+		
+		return validacao;
 	}
 	
 	public Pessoa getUsuario() {

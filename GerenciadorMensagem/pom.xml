@@ -15,6 +15,7 @@
 	</properties>
 	
 	<dependencies>
+		<!-- Dependencias do EJB -->
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
@@ -22,31 +23,36 @@
 			<scope>provided</scope>
 		</dependency>
 		
+		<!-- Dependencias do JSF -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-impl</artifactId>
 			<version>2.1.7</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
 			<version>2.1.7</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.4</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-			<version>5.2</version>
-		</dependency>
 		
-		
+		<!-- Dependencias do Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>3.2.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>3.2.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>3.2.4.RELEASE</version>
+		</dependency>
+				
+		<!-- Dependencias do Hibernate -->
 		<dependency>
 	    	<groupId>hibernate</groupId>
 	    	<artifactId>hibernate-entitymanager</artifactId>
@@ -55,28 +61,25 @@
 	    	<scope>provided</scope>
 	    </dependency>
 	    
+	    <!-- Dependencias de Log -->
 	    <dependency>
 		  <groupId>org.slf4j</groupId>
 		  <artifactId>slf4j-api</artifactId>
 		  <version>1.6.4</version>
 		  <scope>provided</scope>
 		</dependency>
-		
 		<dependency>
 		  <groupId>ch.qos.logback</groupId>
 		  <artifactId>logback-core</artifactId>
 		  <version>1.0.0</version> 
 		  <scope>provided</scope>
 		</dependency>
-		
 		<dependency>
 		  <groupId>ch.qos.logback</groupId>
 		  <artifactId>logback-classic</artifactId>
 		  <version>1.0.0</version>
 		  <scope>provided</scope>
 		</dependency>
-		
-		
 		
 	</dependencies>
 	

@@ -18,11 +18,12 @@ public class DataConverter implements Converter{
 
 	@Override
 	public Object getAsObject(FacesContext contexto, UIComponent componente, String valor) {
-		Calendar data = Calendar.getInstance();
+		Calendar data = null;
 		SimpleDateFormat sdf = new SimpleDateFormat(PADRAO_DATA);
 		
 		try {
 			if (null != valor && !"".equals(valor.trim())) {
+				data = Calendar.getInstance();
 				data.setTime(sdf.parse(valor));
 			}
 		} catch (ParseException e) {

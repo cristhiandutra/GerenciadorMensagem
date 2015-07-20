@@ -12,42 +12,37 @@
    
 
 	<h:form>
-
-	   <div class="page-header">
-		   	<h1 class="text-center">Usuários</h1>  	   
-	   </div>   
-	   
-	 	   
+	
+	   <ol class="breadcrumb">
+	   	<li>Usuário</li>
+	   	<li>Lista</li>	   	
+	   </ol>  
   	   
-		   <table class="table table-striped">
-		  	<thead>
-		  		<tr>
-		  			<td ><h4>Id</h4></td>
-		  			<td ><h4>Nome</h4></td>
-		  			<td ><h4>Perfil</h4></td>
-		  			<td ><h4 class="text-center">Opções</h4></td>
-		  		</tr>
-		  	</thead>
-		  	<tbody>
-				<ui:repeat var="usuario" value="#{usuarioMB.usuarios}">
-					<tr>
-						<td>#{usuario.id}</td>
-						<td>#{usuario.nome}</td>
-						<td>#{usuario.perfil.nome}</td>						
-						<td align="center">					
-							<h:commandLink styleClass="btn btn-info btn-sm" action="#{usuarioMB.excluir(usuario.id)}">
-								<span class="glyphicon glyphicon-remove"></span>
-							</h:commandLink>							
-							<span></span>							
-							<h:commandLink styleClass="btn btn-info btn-sm" action="formulario">
-								<f:param value="#{usuario.id}" name="idUsuario"/>
-								<span class="glyphicon glyphicon-pencil"></span>
-							</h:commandLink>	
-						</td>
-					</tr>
-				</ui:repeat>  	
-		  	</tbody>
-		   </table>
+	   <table class="table table-striped">
+	  	<thead>
+	  		<tr>
+	  			<td ><h4>Id</h4></td>
+	  			<td ><h4>Nome</h4></td>
+	  			<td ><h4>Perfil</h4></td>
+	  			<td ><h4 class="text-center">Opções</h4></td>
+	  		</tr>
+	  	</thead>
+	  	<tbody>
+			<ui:repeat var="usuario" value="#{usuarioMB.usuarios}">
+				<tr>
+					<td>#{usuario.id}</td>
+					<td>#{usuario.nome}</td>
+					<td>#{usuario.perfil.nome}</td>						
+					<td align="center">																		
+						<h:commandLink styleClass="btn btn-info btn-sm" action="formulario">
+							<f:param value="#{usuario.id}" name="idUsuario"/>
+							<span class="glyphicon glyphicon-pencil"></span>
+						</h:commandLink>	
+					</td>
+				</tr>
+			</ui:repeat>  	
+	  	</tbody>
+	   </table>
 	   
 	   
 	

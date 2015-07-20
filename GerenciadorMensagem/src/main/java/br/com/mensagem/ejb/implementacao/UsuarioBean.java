@@ -50,15 +50,6 @@ public class UsuarioBean implements UsuarioLocal {
 	}
 
 	@Override
-	public void excluir(Long idUsuario) {
-		try {
-			getPessoaDAO().excluir(idUsuario);
-		} catch (ExcecaoGenerica e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
 	public Pessoa buscar(Long idUsuario) {
 		Pessoa pessoa = null;
 		
