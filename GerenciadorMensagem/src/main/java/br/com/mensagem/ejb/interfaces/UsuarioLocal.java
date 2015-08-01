@@ -6,6 +6,9 @@ import javax.ejb.Local;
 
 import br.com.faeterj.servicomensagensejb.entidades.Pessoa;
 
+
+
+
 @Local
 public interface UsuarioLocal {
 	

@@ -18,17 +18,8 @@
 
    <h:outputScript library="js" name="bootstrap.min.js"/>
 
-   <h:outputStylesheet library="css" name="sticky-footer-navbar.css"/>      
 </h:head>
 <h:body>
-
-	<script type="text/javascript">
-		function configurarMenu(menuIndice) {
-			var menu = document.getElementById('menu'+menuIndice);
-			menu.className = 'active';
-		}
-
-    </script>
 
 <!-- Menu Superior utilizando o componente NAVBAR -->
 	<nav class="navbar navbar-default navbar-static-top">	
@@ -40,25 +31,16 @@
 					<span class="icon-bar"></span>
 				</button>
 			
-				<a class="navbar-brand" href="#" >Sistema Saúde</a>
+				<a class="navbar-brand" href="#" >Gerenciador Mensagem</a>
 			</div>
 			<div class="collapse navbar-collapse" id="meuMenu">
 				<ul class="nav navbar-nav">
-					<ui:repeat var="menuVO" value="#{sistemaMB.menusVO}" varStatus="status">
-						<li id="menu#{status.index}"> 
-							<h:link value="#{menuVO.nome}" onclick="configurarMenu(#{status.index})" outcome="#{menuVO.url}"/>
+					<ui:repeat var="menuVO" value="#{sistemaMB.menusVO}">
+						<li> 
+							<h:link value="#{menuVO.nome}" outcome="#{menuVO.url}"/>
 						</li>
 					</ui:repeat>
-				</ul>
-				
-				<div class="navbar-form navbar-right">
-	            	<div class="form-group">
-     	                <button type= "submit" class="btn btn-info">Cadastrar</button>
-					</div>
-		            <div class="form-group">
-		            	<button type= "submit" class="btn btn-success">Logar</button>
-		            </div>
-				</div>
+				</ul>				
 			</div>
 		</div>
 	</nav>
@@ -67,24 +49,18 @@
 		<!-- Titulo do sistema utilizando o componente NAVBAR -->
 		<div class="jumbotron">
 			<h1 class="text-center">Gerenciador Mensagem</h1>		      
-			<p class="text-center">O Sitema Gerenciador de Mensagem foi desenvolvido para auxiliar o envio de lembretes ou avisos para usuarios especificos.</p>      	
+			<p class="text-center">O Sitema Gerenciador de Mensagem foi desenvolvido para auxiliar o envio de mensagens ou avisos para contatos específicos.</p>      	
 		</div>			            
-		
+
+		<!-- Corpo principal do sistema -->		
 		<div class="row">
 	      	<div id="teste" class="col-xs-12 col-sm-8 col-md-8" >
 	    		<ui:insert name="principal"/>  		
 	      	</div>   
 	      	<div id="teste" class="col-xs-12 col-sm-4 col-md-4" >
-                <span><h1>Cadastro Rapido Contato</h1></span>
-	      	</div>   
-	      	<div id="teste" class="col-xs-12 col-sm-4 col-md-4" >
-	     		<span><h1>Cadastro Rapido Contato</h1></span>
-	      	</div>
-	      	      	
-	    </div>
-	
-    </div>
-    
-    
+		      	<ui:insert name="faixaLateral"/>  		
+	      	</div>     	      	
+	    </div>	
+    </div>    
 </h:body>
 </html>

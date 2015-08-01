@@ -4,15 +4,14 @@
    xmlns:f="http://java.sun.com/jsf/core"
    xmlns:h="http://java.sun.com/jsf/html"
    template="/WEB-INF/templates/default.xhtml">
-   <ui:define name="principal">
+<ui:define name="principal">
 
    <f:metadata>
    		<f:event listener="#{usuarioMB.configurarLista()}" type="preRenderView"></f:event>
    </f:metadata>
-   
 
 	<h:form>
-	
+
 	   <ol class="breadcrumb">
 	   	<li>Usuário</li>
 	   	<li>Lista</li>	   	
@@ -43,12 +42,13 @@
 			</ui:repeat>  	
 	  	</tbody>
 	   </table>
-	   
-	   
-	
+
 	   <h:commandButton styleClass="btn btn-success" action="cadastrar" value="Cadastrar" />
 
-	</h:form>	
-	
+	</h:form>		
+   </ui:define>
+   
+   <ui:define name="faixaLateral">   
+	<span><h1>Espaço reservado para algum cadastro básico.</h1></span>	
    </ui:define>
 </ui:composition>

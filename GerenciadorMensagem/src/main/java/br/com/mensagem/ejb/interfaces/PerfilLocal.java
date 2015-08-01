@@ -6,6 +6,8 @@ import javax.ejb.Local;
 
 import br.com.faeterj.servicomensagensejb.entidades.Perfil;
 
+
+
 @Local
 public interface PerfilLocal {
 	

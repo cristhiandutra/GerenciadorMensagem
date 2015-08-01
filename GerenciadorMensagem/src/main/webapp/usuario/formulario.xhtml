@@ -4,141 +4,144 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	template="/WEB-INF/templates/default.xhtml">
-	<ui:define name="principal">
+<ui:define name="principal">
 
-		<script type="text/javascript">
+	<script type="text/javascript">
    		jQuery(function($){
 			$("#dataNascimento").mask("99/99/9999");
 			$("#cpf").mask("999999999-99");
    		});
-   	  </script>
+ 	</script>
 
-		<f:metadata>
-			<f:event listener="#{usuarioMB.configurarFormulario()}"
-				type="preRenderView"></f:event>
-		</f:metadata>		
+	<f:metadata>
+		<f:event listener="#{usuarioMB.configurarFormulario()}"
+			type="preRenderView"></f:event>
+	</f:metadata>		
 
-		<h:form id="formularioUsuario" class="form-horizontal" role="form"
-			prependId="false">
+	<h:form id="formularioUsuario" class="form-horizontal" role="form"
+		prependId="false">
+		
+		<ol class="breadcrumb">
+	   		<li>Usuário</li>
+	   		<li>Cadastro</li>	   	
+	    </ol>
+		
+		<h:messages id="messages"
+			errorClass="alert alert-danger" 
+			infoClass="alert alert-info" 
+			warnClass="alert alert-warning"
+			/>
+
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="nome">Nome:</label>
+			<div class="col-sm-9">
+				<h:inputText id="nome" styleClass="form-control"
+					value="#{usuarioMB.usuario.nome}" maxlength="45" 
+					/>					
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="sobrenome">Sobrenome:</label>
+			<div class="col-sm-9">
+				<h:inputText id="sobrenome" styleClass="form-control"
+					value="#{usuarioMB.usuario.sobrenome}" maxlength="45" 
+					/>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="dataNascimento">Data
+				Nascimento:</label>
+			<div class="col-sm-9">
+				<h:inputText id="dataNascimento" styleClass="form-control"
+					value="#{usuarioMB.usuario.dataNascimento}"
+					>
+					<f:converter converterId="br.com.mensagem.DataConverter" />
+				</h:inputText>
+
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="cpf">Cpf:</label>
+			<div class="col-sm-9">
+				<h:inputText id="cpf" styleClass="form-control"
+					value="#{usuarioMB.usuario.cpf}" maxlength="11" 
+					
+					validatorMessage="Insira um CPF válido.">
+					<f:converter converterId="br.com.mensagem.CPFConverter" />
+				</h:inputText>
+			</div>
 			
-			<ol class="breadcrumb">
-		   		<li>Usuário</li>
-		   		<li>Cadastro</li>	   	
-		    </ol>
-			
-			<h:messages id="messages"
-				errorClass="alert alert-danger" 
-				infoClass="alert alert-info" 
-				warnClass="alert alert-warning"
-				/>
+		</div>
 
-			<div class="form-group">
-				<label class="control-label col-sm-3" for="nome">Nome:</label>
-				<div class="col-sm-9">
-					<h:inputText id="nome" styleClass="form-control"
-						value="#{usuarioMB.usuario.nome}" maxlength="45" 
-						/>					
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="login">Login:</label>
+			<div class="col-sm-9">
+				<h:inputText id="login" styleClass="form-control"
+					value="#{usuarioMB.usuario.login}" maxlength="45" 
+					/>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="senha">Senha:</label>
+			<div class="col-sm-9">
+				<h:inputSecret id="senha" styleClass="form-control"
+					value="#{usuarioMB.usuario.senha}" maxlength="45" 
+					/>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="email">Email:</label>
+			<div class="col-sm-9">
+				<h:inputText id="email" styleClass="form-control"
+					value="#{usuarioMB.usuario.email}" maxlength="45" 
+					/>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-3">Perfil:</label>
+			<div class="col-sm-9">
+				<h:selectOneMenu styleClass="form-control"
+					value="#{usuarioMB.idPerfil}"
+					>
+					<f:selectItem itemLabel="Selecione" itemValue="" />
+					<f:selectItems value="#{usuarioMB.perfis}" var="perfil"
+						itemValue="#{perfil.id}" itemLabel="#{perfil.nome}" />
+				</h:selectOneMenu>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-4 col-sm-9">
+				<div class="checkbox">
+					<label> <h:selectBooleanCheckbox id="indAtivo"
+							value="#{usuarioMB.usuario.indAtivo}">
+							<f:selectItem itemValue="1" itemLabel="Ativo" />
+						</h:selectBooleanCheckbox> Ativo
+					</label>
 				</div>
 			</div>
+		</div>
 
-			<div class="form-group">
-				<label class="control-label col-sm-3" for="sobrenome">Sobrenome:</label>
-				<div class="col-sm-9">
-					<h:inputText id="sobrenome" styleClass="form-control"
-						value="#{usuarioMB.usuario.sobrenome}" maxlength="45" 
-						/>
-				</div>
+		<div class="form-group">
+			<div class="col-sm-offset-4">
+				<h:commandButton class="btn btn-success"
+					action="#{usuarioMB.salvar()}" value="Salvar" />
+				<h:button class="btn btn-success" value="Voltar"
+					outcome="lista?faces-redirect=true" />
 			</div>
+		</div>
 
-			<div class="form-group">
-				<label class="control-label col-sm-3" for="dataNascimento">Data
-					Nascimento:</label>
-				<div class="col-sm-9">
-					<h:inputText id="dataNascimento" styleClass="form-control"
-						value="#{usuarioMB.usuario.dataNascimento}"
-						>
-						<f:converter converterId="br.com.mensagem.DataConverter" />
-					</h:inputText>
+	</h:form>
+</ui:define>
 
-				</div>
-			</div>
+<ui:define name="faixaLateral">   
+	<span><h1>Espaço reservado para algum cadastro básico.</h1></span>	
+</ui:define>
 
-			<div class="form-group">
-				<label class="control-label col-sm-3" for="cpf">Cpf:</label>
-				<div class="col-sm-9">
-					<h:inputText id="cpf" styleClass="form-control"
-						value="#{usuarioMB.usuario.cpf}" maxlength="11" 
-						
-						validatorMessage="Insira um CPF válido.">
-						<f:converter converterId="br.com.mensagem.CPFConverter" />
-					</h:inputText>
-				</div>
-				
-			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-3" for="login">Login:</label>
-				<div class="col-sm-9">
-					<h:inputText id="login" styleClass="form-control"
-						value="#{usuarioMB.usuario.login}" maxlength="45" 
-						/>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-3" for="senha">Senha:</label>
-				<div class="col-sm-9">
-					<h:inputSecret id="senha" styleClass="form-control"
-						value="#{usuarioMB.usuario.senha}" maxlength="45" 
-						/>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-3" for="email">Email:</label>
-				<div class="col-sm-9">
-					<h:inputText id="email" styleClass="form-control"
-						value="#{usuarioMB.usuario.email}" maxlength="45" 
-						/>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-3">Perfil:</label>
-				<div class="col-sm-9">
-					<h:selectOneMenu styleClass="form-control"
-						value="#{usuarioMB.idPerfil}"
-						>
-						<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems value="#{usuarioMB.perfis}" var="perfil"
-							itemValue="#{perfil.id}" itemLabel="#{perfil.nome}" />
-					</h:selectOneMenu>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<div class="col-sm-offset-4 col-sm-9">
-					<div class="checkbox">
-						<label> <h:selectBooleanCheckbox id="indAtivo"
-								value="#{usuarioMB.usuario.indAtivo}">
-								<f:selectItem itemValue="1" itemLabel="Ativo" />
-							</h:selectBooleanCheckbox> Ativo
-						</label>
-					</div>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<div class="col-sm-offset-4">
-					<h:commandButton class="btn btn-success"
-						action="#{usuarioMB.salvar()}" value="Salvar" />
-					<h:button class="btn btn-success" value="Voltar"
-						outcome="lista?faces-redirect=true" />
-				</div>
-			</div>
-
-
-		</h:form>
-
-	</ui:define>
 </ui:composition>
